@@ -4,6 +4,8 @@ using IR.App.Data;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using IR.Application;
+using IR.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,9 +40,9 @@ builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.Requ
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 
 // Add layers
-//builder.Services
-//    .AddApplication()
-//    .AddInfrastructure(builder.Configuration);
+builder.Services
+    .AddApplication()
+    .AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
